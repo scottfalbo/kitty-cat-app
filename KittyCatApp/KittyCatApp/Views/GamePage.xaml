@@ -4,7 +4,10 @@
              x:Class="KittyCatApp.Views.GamePage"
              Title="Game Page">
     <!-- Layout children in two rows -->
-    <StackLayout Margin="20">
-        <Label Text="Game Page" FontSize="Title"/>
-    </StackLayout>
+    <BoxView Color="#333"
+             CornerRadius="10"
+             WidthRequest="300"
+             HeightRequest="400"
+             VerticalOptions="Center"
+             HorizontalOptions="FillAndExpand" />
 </ContentPage>

@@ -15,6 +15,8 @@ namespace KittyCatApp.Views
         public Photos()
         {
             InitializeComponent();
+            
         }
+
     }
 }
