@@ -4,10 +4,7 @@
              x:Class="KittyCatApp.Views.GamePage"
              Title="Game Page">
     <!-- Layout children in two rows -->
-    <BoxView Color="#333"
-             CornerRadius="10"
-             WidthRequest="300"
-             HeightRequest="400"
-             VerticalOptions="Center"
-             HorizontalOptions="FillAndExpand" />
+    <Button Text="Click Me" Clicked="VibrateMe" />
+
+
 </ContentPage>

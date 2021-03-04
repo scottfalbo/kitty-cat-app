@@ -12,10 +12,22 @@ namespace KittyCatApp.Views
             InitializeComponent();
         }
 
-        async void OnButtonClicked(object sender, EventArgs e)
+        public void VibrateMe(object sender, EventArgs e)
         {
-            // Launch the specified URL in the system browser.
-            await Launcher.OpenAsync("https://www.scottfalbo.com");
+            try
+            {
+                //Vibration.Vibrate();
+                var duration = TimeSpan.FromSeconds(1);
+                Vibration.Vibrate(duration);
+            }
+            catch (FeatureNotSupportedException ex)
+            {
+                Console.WriteLine($"Exception message: {ex}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception message: {ex}");
+            }
         }
     }
 }
