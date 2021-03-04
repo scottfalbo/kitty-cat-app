@@ -4,7 +4,18 @@
              x:Class="KittyCatApp.Views.GamePage"
              Title="Game Page">
     <!-- Layout children in two rows -->
-    <Button Text="Click Me" Clicked="VibrateMe" />
+    <StackLayout>
+        <Frame Padding="20" HorizontalOptions="Start" BorderColor="#999" HasShadow="true">
+            <Label Text="Thwomps: 0" x:Name="hits" FontSize="Medium"/>
+        </Frame>
+        <StackLayout>
+            <Frame Padding="20" BackgroundColor="#333" HorizontalOptions="Center" CornerRadius="50">
+                <Button Text="clicky" Clicked="VibrateMe" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" CornerRadius="50"/>
+            </Frame>
+        </StackLayout>
+
+    </StackLayout>
+
 
 
 </ContentPage>
