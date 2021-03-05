@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="KittyCatApp.Views.HomePage"
+             xmlns:vm="clr-namespace:KittyCatApp.ViewModels"
+             xmlns:model="clr-namespace:KittyCatApp.Models"
              Title="KittyCatApp">
     <!-- Layout children vertically -->
 
@@ -16,7 +18,21 @@
                     <Image Source="kitty_logo.png" VerticalOptions="Center" HeightRequest="64" />
                 </ContentView>
             </StackLayout>
+            <Entry x:Name="EntryText" Placeholder="input" TextColor = "#000" BackgroundColor="#fff"/>
+            <Button Text="Say the Words" Clicked="SayTheThing"  TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Slider MinimumTrackColor="#000"
+                MaximumTrackColor="#333"
+                ThumbColor="#666"
+                Minimum="0" Maximum="1" Value="1" x:Name="SliderVolume" />
+            <ListView x:Name="Languages" ItemsSource="{Binding Items}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Text}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
+
     </Grid>
 
 </ContentPage>
