@@ -9,8 +9,7 @@ namespace KittyCatApp
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
-            Routing.RegisterRoute(nameof(GamePage), typeof(GamePage));
-            Routing.RegisterRoute(nameof(Photos), typeof(Photos));
+            Routing.RegisterRoute(nameof(Log), typeof(Log));
         }
     }
 }

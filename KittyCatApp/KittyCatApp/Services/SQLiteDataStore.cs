@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KittyCatApp.Services
 {
-    public class SQLiteDataStore : IDataStore<Item>
+    public class SQLiteDataStore : IDataStore<Translation>
     {
         readonly SQLiteAsyncConnection database;
 
@@ -16,14 +16,14 @@ namespace KittyCatApp.Services
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Storage.db3");
             database = new SQLiteAsyncConnection(path);
-            database.CreateTableAsync<Item>().Wait();
+            database.CreateTableAsync<Translation>().Wait();
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(Translation translatedText)
         {
             try
             {
-                await database.InsertAsync(item);
+                await database.InsertAsync(translatedText);
                 return true;
             }
             catch (Exception e)
@@ -47,21 +47,21 @@ namespace KittyCatApp.Services
             }
         }
 
-        public Task<Item> GetItemAsync(int id)
+        public Task<Translation> GetItemAsync(int id)
         {
-            return database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Table<Translation>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<List<Item>> GetItemsAsync(bool forceRefresh = false)
+        public Task<List<Translation>> GetItemsAsync(bool forceRefresh = false)
         {
-            return database.Table<Item>().ToListAsync();
+            return database.Table<Translation>().ToListAsync();
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(Translation translatedText)
         {
             try
             {
-                int updatedItem = await database.UpdateAsync(item);
+                int updatedItem = await database.UpdateAsync(translatedText);
                 return true;
             }
             catch (Exception e)

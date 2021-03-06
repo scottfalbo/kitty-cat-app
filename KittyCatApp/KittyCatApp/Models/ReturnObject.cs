@@ -4,9 +4,9 @@ using System.Text;
 
 namespace KittyCatApp.Models
 {
-    public class Item
+    public class ReturnObject
     {
-        public int Id { get; set; }
-     
+        public string text { get; set; }
+        public string to { get; set; }
     }
 }

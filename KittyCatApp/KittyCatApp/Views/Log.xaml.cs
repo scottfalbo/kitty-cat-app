@@ -10,13 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace KittyCatApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Photos : ContentPage
+    public partial class Log : ContentPage
     {
-        public Photos()
+        public Log()
         {
             InitializeComponent();
-            
         }
-
     }
 }

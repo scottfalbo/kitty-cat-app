@@ -4,7 +4,7 @@
              x:Class="KittyCatApp.App">
 
     <Application.Resources>
-        <Color x:Key="AppPrimaryColor">#053732</Color>
+        <Color x:Key="AppPrimaryColor">#333</Color>
         <Color x:Key="AppBackgroundColor">#999</Color>
         <Color x:Key="PrimaryColor">Black</Color>
         <Color x:Key="SecondaryColor">White</Color>

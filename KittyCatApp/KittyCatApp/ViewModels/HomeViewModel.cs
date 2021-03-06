@@ -1,44 +1,51 @@
 ﻿using KittyCatApp.Models;
 using KittyCatApp.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace KittyCatApp.ViewModels
 {
     public class HomeViewModel : BaseViewModel
     {
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Translation> DataStore => DependencyService.Get<IDataStore<Translation>>();
 
-        public ObservableCollection<Locale> Items { get; set; }
 
-        public HomeViewModel()
+        static readonly string key = "32750c2dda8c4834ac8303cf89cc8463";
+        static readonly string host = "https://api.cognitive.microsofttranslator.com/";
+        static readonly string location = "westus2";
+        public async Task<string> TranslateTextAsync(string inputText)
         {
-            Items = new ObservableCollection<Locale>();
-        }
 
-        public async Task GetLocales()
-        {
-            try
+            string path = $"/translate?api-version=3.0&from=en&to=fr";
+
+            object[] body = new object[] { new { Text = inputText } };
+            var requestBody = JsonConvert.SerializeObject(body);
+
+            using (var client = new HttpClient())
+            using (var request = new HttpRequestMessage())
             {
-                Items.Clear();
-                var locales = await TextToSpeech.GetLocalesAsync();
-                
-                var locale = locales.ToList();
-                foreach (var item in locale)
-                {
-                    Items.Add(item);
-                }
-                Console.WriteLine("whatever");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                request.Method = HttpMethod.Post;
+                request.RequestUri = new Uri(host + path);
+                request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+                request.Headers.Add("Ocp-Apim-Subscription-Key", key);
+                request.Headers.Add("Ocp-Apim-Subscription-Region", location);
+
+                HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+
+                string result = await response.Content.ReadAsStringAsync();
+                JObject responseBody = JObject.Parse(result);
+
+                int thing = 0;
+
+                Console.WriteLine("");
+
+                return result;
             }
         }
     }

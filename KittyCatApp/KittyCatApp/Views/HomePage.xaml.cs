@@ -1,4 +1,5 @@
 ﻿using KittyCatApp.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,20 @@ namespace KittyCatApp.Views
             BindingContext = _vm = new HomeViewModel();
         }
 
-        public async void SayTheThing(object sender, EventArgs e)
+        public async void French(object sender, EventArgs e)
         {
-            await TextToSpeech.SpeakAsync(EntryText.Text, new SpeechOptions
+            var translatedText = _vm.TranslateTextAsync(EntryText.Text);
+            string text = translatedText.ToString();
+
+            var locales = await TextToSpeech.GetLocalesAsync();
+            var locale = locales.ToList();
+
+            await TextToSpeech.SpeakAsync(text, new SpeechOptions
             {
-                Volume = (float)SliderVolume.Value
+                Volume = (float)SliderVolume.Value,
+                Locale = locale[22]
             });
-            Task.Run(async () => await _vm.GetLocales()).Wait();
+            
         }
 
     }

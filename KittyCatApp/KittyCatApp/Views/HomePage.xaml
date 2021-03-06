@@ -4,22 +4,25 @@
              x:Class="KittyCatApp.Views.HomePage"
              xmlns:vm="clr-namespace:KittyCatApp.ViewModels"
              xmlns:model="clr-namespace:KittyCatApp.Models"
-             Title="KittyCatApp">
+             Title="Translator">
     <!-- Layout children vertically -->
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="#084c3b" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+        <StackLayout BackgroundColor="#fff" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Image Source="kitty_logo.png" VerticalOptions="Center" HeightRequest="64" />
+                    <Label Text="Translator" FontSize="Header" TextColor="#000"/>
                 </ContentView>
             </StackLayout>
             <Entry x:Name="EntryText" Placeholder="input" TextColor = "#000" BackgroundColor="#fff"/>
-            <Button Text="Say the Words" Clicked="SayTheThing"  TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Button Text="Say the Words" Clicked="French" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
             <Slider MinimumTrackColor="#000"
                 MaximumTrackColor="#333"
                 ThumbColor="#666"

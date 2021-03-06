@@ -10,7 +10,7 @@ namespace KittyCatApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Translation> DataStore => DependencyService.Get<IDataStore<Translation>>();
 
         bool isBusy = false;
         public bool IsBusy
