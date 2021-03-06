@@ -25,11 +25,8 @@
         <ShellContent Title="Home"
                       Icon="paw_solid.png"
                       ContentTemplate="{DataTemplate views:HomePage}" />
-        <ShellContent Title="Game"
+        <ShellContent Title="Log"
                       Icon="paw_solid.png"
-                      ContentTemplate="{DataTemplate views:GamePage}" />
-        <ShellContent Title="Photos"
-                      Icon="paw_solid.png"
-                      ContentTemplate="{DataTemplate views:Photos}" />
+                      ContentTemplate="{DataTemplate views:Log}" />
     </TabBar>
 </Shell>

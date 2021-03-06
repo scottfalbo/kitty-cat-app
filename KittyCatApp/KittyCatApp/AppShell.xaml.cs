@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using KittyCatApp.Views;
+using Xamarin.Forms;
 
 namespace KittyCatApp
 {
@@ -7,6 +8,8 @@ namespace KittyCatApp
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+            Routing.RegisterRoute(nameof(Log), typeof(Log));
         }
     }
 }

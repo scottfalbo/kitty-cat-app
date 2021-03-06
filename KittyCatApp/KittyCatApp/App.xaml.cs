@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using KittyCatApp.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace KittyCatApp
@@ -9,6 +10,7 @@ namespace KittyCatApp
         public App()
         {
             InitializeComponent();
+            DependencyService.Register<SQLiteDataStore>();
             MainPage = new AppShell();
         }
 
