@@ -16,7 +16,7 @@ namespace KittyCatApp.ViewModels
         public IDataStore<Translation> DataStore => DependencyService.Get<IDataStore<Translation>>();
 
 
-        static readonly string key = "";
+        static readonly string key = "32750c2dda8c4834ac8303cf89cc8463";
         static readonly string host = "https://api.cognitive.microsofttranslator.com/";
         static readonly string location = "westus2";
         public async Task<string> TranslateTextAsync(string inputText)
@@ -39,14 +39,38 @@ namespace KittyCatApp.ViewModels
                 HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
 
                 string result = await response.Content.ReadAsStringAsync();
-                JObject responseBody = JObject.Parse(result);
-
-                int thing = 0;
-
-                Console.WriteLine("");
 
                 return result;
             }
+            
+        }
+
+        public string[] DeserializeObject(string json)
+        {
+            string innerObject = "";
+
+            JArray parsed = JArray.Parse(json);
+            foreach (JObject textObject in parsed.Children<JObject>())
+            {
+                foreach (JProperty prop in textObject.Properties())
+                {
+                    innerObject = (string)(prop.Value[0]).ToString();
+                }
+            }
+
+            JObject parsedInner = JObject.Parse(innerObject);
+            string[] values = new string[2];
+
+            foreach (JProperty innerProp in parsedInner.Properties())
+            {
+                string propName = innerProp.Name;
+                if (propName.Equals("text"))
+                    values[0] = (string)innerProp.Value;
+                if (propName.Equals("to"))
+                    values[1] = (string)innerProp.Value;
+            }
+
+            return values;
         }
     }
 }

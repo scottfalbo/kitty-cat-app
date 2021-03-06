@@ -1,5 +1,6 @@
 ﻿using KittyCatApp.ViewModels;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json.Linq;
+using KittyCatApp.Models;
 
 namespace KittyCatApp.Views
 {
@@ -24,13 +27,14 @@ namespace KittyCatApp.Views
 
         public async void French(object sender, EventArgs e)
         {
-            var translatedText = _vm.TranslateTextAsync(EntryText.Text);
-            string text = translatedText.ToString();
+            var translatedText = await _vm.TranslateTextAsync(EntryText.Text);
+            string[] results = _vm.DeserializeObject(translatedText);
+
 
             var locales = await TextToSpeech.GetLocalesAsync();
             var locale = locales.ToList();
 
-            await TextToSpeech.SpeakAsync(text, new SpeechOptions
+            await TextToSpeech.SpeakAsync(results[0], new SpeechOptions
             {
                 Volume = (float)SliderVolume.Value,
                 Locale = locale[22]
@@ -39,4 +43,5 @@ namespace KittyCatApp.Views
         }
 
     }
+
 }
