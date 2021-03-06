@@ -16,7 +16,7 @@ namespace KittyCatApp.ViewModels
         public IDataStore<Translation> DataStore => DependencyService.Get<IDataStore<Translation>>();
 
 
-        static readonly string key = "32750c2dda8c4834ac8303cf89cc8463";
+        static readonly string key = "";
         static readonly string host = "https://api.cognitive.microsofttranslator.com/";
         static readonly string location = "westus2";
         public async Task<string> TranslateTextAsync(string inputText)
