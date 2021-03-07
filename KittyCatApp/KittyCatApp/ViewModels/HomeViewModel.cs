@@ -29,7 +29,6 @@ namespace KittyCatApp.ViewModels
         /// <returns> response </returns>
         public async Task<string> TranslateTextAsync(string inputText, string lang)
         {
-            //32750c2dda8c4834ac8303cf89cc8463
             string path = $"/translate?api-version=3.0&from=en&to={lang}";
 
             object[] body = new object[] { new { Text = inputText } };
