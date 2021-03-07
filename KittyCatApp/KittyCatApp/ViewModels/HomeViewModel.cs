@@ -18,12 +18,18 @@ namespace KittyCatApp.ViewModels
         public IDataStore<Translation> DataStore => DependencyService.Get<IDataStore<Translation>>();
         public event PropertyChangedEventHandler PropertyChanged;
 
-        static readonly string key = "";  // it's a secret
+        static readonly string key = ""; // it's a secret <-- insert your key here
         static readonly string host = "https://api.cognitive.microsofttranslator.com/";
         static readonly string location = "westus2";
+        /// <summary>
+        /// Send a request to the Azure Cognitive Services API
+        /// </summary>
+        /// <param name="inputText"> phrase to translate </param>
+        /// <param name="lang"> language to translate to </param>
+        /// <returns> response </returns>
         public async Task<string> TranslateTextAsync(string inputText, string lang)
         {
-
+            //32750c2dda8c4834ac8303cf89cc8463
             string path = $"/translate?api-version=3.0&from=en&to={lang}";
 
             object[] body = new object[] { new { Text = inputText } };
@@ -47,6 +53,11 @@ namespace KittyCatApp.ViewModels
             
         }
 
+        /// <summary>
+        /// Deserialize the response from the database
+        /// </summary>
+        /// <param name="json"> response from DB </param>
+        /// <returns> string[] { translated phrase, language } </returns>
         public string[] DeserializeObject(string json)
         {
             string innerObject = "";
@@ -80,6 +91,12 @@ namespace KittyCatApp.ViewModels
             return values;
         }
 
+        /// <summary>
+        /// Instantiate a Translation object and save it to the DB
+        /// </summary>
+        /// <param name="input"> user input </param>
+        /// <param name="lang"> target language </param>
+        /// <param name="translated"> translated phrase </param>
         public async void SaveTranslation(string input, string lang, string translated)
         {
             Translation saveItem = new Translation()
@@ -92,11 +109,12 @@ namespace KittyCatApp.ViewModels
             await DataStore.AddItemAsync(saveItem);
         }
 
+        /// <summary>
+        /// Binded properities for HomePage view
+        /// </summary>
         private string text = string.Empty;
         private string newPhrase = string.Empty;
-
         public string TranslatedPhrase => $"Translated: {newPhrase}";
-
         public string Text
         {
             get { return text; }
@@ -110,7 +128,9 @@ namespace KittyCatApp.ViewModels
                 OnPropertyChanged(nameof(Text));
             }
         }
-
+        /// <summary>
+        /// Binded list got Log view
+        /// </summary>
         public ObservableCollection<LogTranscript> Logs { get; set; }
 
         public HomeViewModel()
@@ -118,6 +138,10 @@ namespace KittyCatApp.ViewModels
             Logs = new ObservableCollection<LogTranscript>();
         }
 
+        /// <summary>
+        /// Requset a list of all transcripts in the DB, instaniate a new LogTranscript object for the Log view
+        /// </summary>
+        /// <returns> task </returns>
         public async Task RetrieveLogs()
         {
             try
@@ -142,6 +166,11 @@ namespace KittyCatApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Changes language code full name for view
+        /// </summary>
+        /// <param name="input"> language code</param>
+        /// <returns> full name </returns>
         public string LanguageText(string input)
         {
             switch (input)
@@ -153,7 +182,7 @@ namespace KittyCatApp.ViewModels
                 case "es":
                     return "Spanish";
                 case "ja":
-                    return "Japan";
+                    return "Japanese";
                 default:
                     return "womp womp"; 
             }      
