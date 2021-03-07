@@ -47,6 +47,7 @@ namespace KittyCatApp.Services
             }
         }
 
+
         public Task<Translation> GetItemAsync(int id)
         {
             return database.Table<Translation>().Where(i => i.Id == id).FirstOrDefaultAsync();

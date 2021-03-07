@@ -4,9 +4,9 @@ using System.Text;
 
 namespace KittyCatApp.Models
 {
-    public class ReturnObject
+    public class LogTranscript
     {
-        public string text { get; set; }
-        public string to { get; set; }
+        public int Id { get; set; }
+        public string Transcript { get; set; }
     }
 }
