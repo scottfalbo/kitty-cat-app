@@ -18,11 +18,21 @@
         <StackLayout BackgroundColor="#fff" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
-                    <Label Text="Translator" FontSize="Header" TextColor="#000"/>
+                    <Label Text="Translator" FontSize="Large"  TextColor="#000"/>
                 </ContentView>
             </StackLayout>
+            
+            <StackLayout>
             <Entry x:Name="EntryText" Placeholder="input" TextColor = "#000" BackgroundColor="#fff"/>
-            <Button Text="Say the Words" Clicked="French" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+            
+            <Button Text="Spanish" Clicked="Spanish" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+
+             <Button Text="French" Clicked="French" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+
+             <Button Text="German" Clicked="German" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+            </StackLayout>
+            
+                
             <Slider MinimumTrackColor="#000"
                 MaximumTrackColor="#333"
                 ThumbColor="#666"

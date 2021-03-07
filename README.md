@@ -21,3 +21,6 @@ This is a .NET project built with Xamarin in Visual Studio.
   + Set up the app with basic navigation.
   + Did a little bit of styling.
 
+## Attribution 
+[Azure API request](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/quickstart-translator?tabs=csharp)<br>
+[Json parsing](https://social.msdn.microsoft.com/Forums/office/en-US/df1d6c1b-349a-4f7f-9168-5bf01d320075/how-to-get-keyvalue-pair-from-json-jarray?forum=csharpgeneral)<br>
