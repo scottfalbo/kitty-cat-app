@@ -26,18 +26,22 @@ namespace KittyCatApp.Views
 
         public async void Spanish(object sender, EventArgs e)
         {
-            await TranslatePhrase(EntryText.Text, "es");
+            await TranslatePhrase(EntryText.Text, "es", 40);
         }
         public async void French(object sender, EventArgs e)
         {
-            await TranslatePhrase(EntryText.Text, "fr");
+            await TranslatePhrase(EntryText.Text, "fr", 22);
         }
         public async void German(object sender, EventArgs e)
         {
-            await TranslatePhrase(EntryText.Text, "de");
+            await TranslatePhrase(EntryText.Text, "de", 30);
+        }
+        public async void Japanese(object sender, EventArgs e)
+        {
+            await TranslatePhrase(EntryText.Text, "ja", 42);
         }
 
-        public async Task TranslatePhrase(string phrase, string lang)
+        public async Task TranslatePhrase(string phrase, string lang, int accent)
         {
             var translatedText = await _vm.TranslateTextAsync(phrase, lang);
             string[] results = _vm.DeserializeObject(translatedText);
@@ -49,9 +53,10 @@ namespace KittyCatApp.Views
             await TextToSpeech.SpeakAsync(results[0], new SpeechOptions
             {
                 Volume = (float)SliderVolume.Value,
-                Locale = locale[22]
+                Locale = locale[accent]
             });
-            
+
+            _vm.SaveTranslation(phrase, lang, results[0]);
         }
 
     }

@@ -22,28 +22,33 @@
                 </ContentView>
             </StackLayout>
             
-            <StackLayout>
-            <Entry x:Name="EntryText" Placeholder="input" TextColor = "#000" BackgroundColor="#fff"/>
-            
-            <Button Text="Spanish" Clicked="Spanish" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+            <StackLayout Padding="20">
+            <Entry x:Name="EntryText" Placeholder="input" TextColor = "#000" BackgroundColor="#fff" Text="{Binding Text}" />
 
-             <Button Text="French" Clicked="French" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Button Text="Spanish" Clicked="Spanish" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="2" BorderColor="#000"/>
 
-             <Button Text="German" Clicked="German" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Button Text="French" Clicked="French" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="2" BorderColor="#000"/>
+
+                <Button Text="German" Clicked="German" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="2" BorderColor="#000"/>
+
+             <Button Text="Japanese" Clicked="Japanese" TextColor = "#000" BackgroundColor="#fff" HorizontalOptions="Center" VerticalOptions="Center" BorderWidth="2" BorderColor="#000"/>
+
+                <Label Text="{Binding TranslatedPhrase}" FontSize="Large"/>
             </StackLayout>
-            
-                
-            <Slider MinimumTrackColor="#000"
-                MaximumTrackColor="#333"
-                ThumbColor="#666"
-                Minimum="0" Maximum="1" Value="1" x:Name="SliderVolume" />
-            <ListView x:Name="Languages" ItemsSource="{Binding Items}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Text}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+
+            <StackLayout Padding="20">   
+                <Slider MinimumTrackColor="#000"
+                    MaximumTrackColor="#333"
+                    ThumbColor="#666"
+                    Minimum="0" Maximum="1" Value="1" x:Name="SliderVolume" />
+                <ListView x:Name="Languages" ItemsSource="{Binding Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Text}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
         </StackLayout>
 
     </Grid>

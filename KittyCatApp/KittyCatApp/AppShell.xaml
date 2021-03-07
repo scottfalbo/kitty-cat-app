@@ -23,10 +23,10 @@
     
     <TabBar>
         <ShellContent Title="Home"
-                      Icon="paw_solid.png"
+                      Icon="globe.png"
                       ContentTemplate="{DataTemplate views:HomePage}" />
         <ShellContent Title="Log"
-                      Icon="paw_solid.png"
+                      Icon="globe.png"
                       ContentTemplate="{DataTemplate views:Log}" />
     </TabBar>
 </Shell>
